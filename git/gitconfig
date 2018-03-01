@@ -254,3 +254,6 @@
 
 [fetch]
         prune = true
+[user]
+	name = Michael-Bryant Choa
+	email = mbchoa@gmail.com
