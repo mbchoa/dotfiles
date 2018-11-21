@@ -38,6 +38,9 @@
 
         # Merge
         m = merge
+       
+        # Rebase
+        ros = rebase origin/staging
 
         # Pull
         up = pull
@@ -49,10 +52,12 @@
         p = push
         pom = push origin master
         poh = push origin head
+        pos = push origin staging
 
         # Stash
         st = stash
         stp = stash pop
+        stl = stash list
 
         # Status/Logging
         s = status
@@ -79,8 +84,10 @@
         go = !git checkout $1 && pull
         master = !git checkout master && pull
         develop = !git checkout develop && pull
+        staging = !git checkout staging && pull
         mmm = !git fetch origin master && git rebase origin/master
         ddd = !git fetch origin develop && git rebase origin/develop
+        sss = !git fetch origin staging && git rebase origin/staging
 
         # Misc
         publish = "!git push --set-upstream origin $(git branch-name)"
