@@ -167,7 +167,6 @@ mv -f ~/.atom ~/dotfiles_old/
 ln -s $HOME/dotfiles/atom ~/.atom
 echo "done"
 
-
 declare -a FILES_TO_SYMLINK=(
 
   'shell/shell_aliases'
@@ -183,7 +182,6 @@ declare -a FILES_TO_SYMLINK=(
   'shell/gemrc'
   'shell/inputrc'
   'shell/screenrc'
-  'shell/vimrc'
 
   'git/gitattributes'
   'git/gitconfig'
@@ -192,7 +190,7 @@ declare -a FILES_TO_SYMLINK=(
   'editorconfig'
 )
 
-# FILES_TO_SYMLINK="$FILES_TO_SYMLINK .vim bin" # add in vim and the binaries
+FILES_TO_SYMLINK="$FILES_TO_SYMLINK vim bin" # add in vim and the binaries
 
 # Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 
