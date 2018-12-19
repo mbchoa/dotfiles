@@ -47,6 +47,7 @@
         plom = pull origin master
         plum = pull upstream master
         preb = !git fetch upstream && git rebase upstream/master
+        fa = fetch --all
 
         # Push
         p = push
