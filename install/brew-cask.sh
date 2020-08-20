@@ -18,7 +18,6 @@ apps=(
     imageoptim
     evernote
     iterm2
-    atom
     webstorm
     firefox
     firefoxnightly

@@ -127,24 +127,13 @@ chmod +x ~/z/z.sh
 # for the c alias (syntax highlighted cat)
 sudo easy_install Pygments
 
-
-###############################################################################
-# Atom                                                                        #
-###############################################################################
-
-ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom
-
-
 ###############################################################################
 # OSX defaults                                                                #
 # https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
 ###############################################################################
-
 sh osx/set-defaults.sh
-
 
 ###############################################################################
 # Symlinks to link dotfiles into ~/                                           #
 ###############################################################################
-
 ./setup.sh
