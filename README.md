@@ -53,10 +53,6 @@ as the `git` user credentials, e.g.:
   email = mbc@test.com
 ```
 
-## OS X Defaults
-
-My favorite part of this repo is the [set-defaults](osx/set-defaults.sh) script for OS X.
-
 ## Resources
 
 I actively watch the following repositories and add the best changes to this repository:
