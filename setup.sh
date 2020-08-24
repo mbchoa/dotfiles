@@ -167,7 +167,6 @@ declare -a FILES_TO_SYMLINK=(
   'shell/shell_exports'
   'shell/shell_functions'
   'shell/bash_profile'
-  'shell/bash_prompt'
   'shell/bashrc'
   'shell/zshrc'
   'shell/ackrc'
@@ -308,9 +307,6 @@ ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
-
-# Install the Solarized Dark theme for iTerm
-open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false

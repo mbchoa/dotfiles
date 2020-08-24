@@ -33,28 +33,6 @@ parse_git_branch() {
 #   1.  ENVIRONMENT CONFIGURATION
 #   -------------------------------
 
-#   Change Prompt
-#   ------------------------------------------------------------
-
-
-#  export PS1="\n________________________________________________________________________________\n$BLUEBOLD\$(parse_git_branch) $RED\w $PURPLE@ $GREEN\h $GREENBOLD(\u) $RESETCOLOR=> $WHITE"
-
-
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-
-source ~/.bash_prompt
-
-for file in ~/.{bash_prompt}; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-
-
-
-
-
 #   Set Paths
 #   ------------------------------------------------------------
   export PATH="$PATH:/usr/local/bin/"

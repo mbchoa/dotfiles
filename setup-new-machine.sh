@@ -28,9 +28,6 @@ cp ~/.bash_history ~/migration # back it up for fun?
 cp ~/.gitconfig.local ~/migration
 cp ~/.z ~/migration # z history file.
 
-# iTerm settings.
-  # Prefs, General, Use settings from Folder
-
 # Finder settings
 
 
