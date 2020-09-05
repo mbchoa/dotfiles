@@ -28,8 +28,6 @@ cp ~/.bash_history ~/migration # back it up for fun?
 cp ~/.gitconfig.local ~/migration
 cp ~/.z ~/migration # z history file.
 
-# Finder settings
-
 
 ###############################################################################
 # XCode Command Line Tools                                                    #
@@ -70,7 +68,7 @@ fi
 
 
 ###############################################################################
-# Homebrew                                                                    #
+# Install Homebrew                                                            #
 ###############################################################################
 
 $HOME/dotfiles/install/brew.sh
@@ -78,15 +76,10 @@ $HOME/dotfiles/install/brew-cask.sh
 
 
 ###############################################################################
-# Node                                                                        #
+# Install Node (with nvm)                                                     #
 ###############################################################################
 
 $HOME/dotfiles/install/npm.sh
-
-# Type `git open` to open the GitHub page or website for a repository.
-npm install -g git-open
-# trash as the safe `rm` alternative
-npm install -g trash-cli
 
 
 ###############################################################################
@@ -97,28 +90,6 @@ npm install -g trash-cli
 # the `push` command which copies the github compare URL to my clipboard is heaven
 bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
-
-###############################################################################
-# Z                                                                           #
-###############################################################################
-
-# github.com/rupa/z - hooked up in .zshrc
-# consider reusing your current .z file if possible. it's painful to rebuild :)
-# or use autojump instead https://github.com/wting/autojump
-git clone https://github.com/rupa/z.git ~/z
-chmod +x ~/z/z.sh
-
-
-# my magic photobooth symlink -> dropbox. I love it.
-#    + first move Photo Booth folder out of Pictures
-#    + then start Photo Booth. It'll ask where to put the library.
-#    + put it in Dropbox/public
-#   * Now… you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-#   * then you grab public URL and send off your video message in a heartbeat.
-
-
-# for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
 
 ###############################################################################
 # Symlinks to link dotfiles into ~/                                           #

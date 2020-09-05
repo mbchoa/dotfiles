@@ -161,19 +161,16 @@ echo "done"
 #
 
 declare -a FILES_TO_SYMLINK=(
-
+  'shell/bash_profile'
+  'shell/bashrc'
+  'shell/curlrc'
+  'shell/inputrc'
   'shell/shell_aliases'
   'shell/shell_config'
   'shell/shell_exports'
   'shell/shell_functions'
-  'shell/bash_profile'
-  'shell/bashrc'
+  'shell/vimrc'
   'shell/zshrc'
-  'shell/ackrc'
-  'shell/curlrc'
-  'shell/gemrc'
-  'shell/inputrc'
-  'shell/screenrc'
 
   'git/gitattributes'
   'git/gitconfig'
@@ -291,15 +288,7 @@ install_zsh () {
 # fi
 
 main
-# install_zsh
-
-###############################################################################
-# Zsh                                                                         #
-###############################################################################
-
-# Install Zsh settings
-ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
-
+install_zsh
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
@@ -311,5 +300,5 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
-# Reload zsh settings
+# Load zsh settings
 source ~/.zshrc
