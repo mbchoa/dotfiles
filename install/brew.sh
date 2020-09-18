@@ -54,6 +54,7 @@ apps=(
     ffmpeg
     fortune
     ponysay
+    gh
     git
     git-extras
     hub
