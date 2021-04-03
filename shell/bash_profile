@@ -61,6 +61,10 @@
 #   Set default editor for Kube
   export KUBE_EDITOR=vim
 
+#   Set Deno install path
+  export DENO_INSTALL="/home/mbchoa/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
