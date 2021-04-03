@@ -1,6 +1,12 @@
 # Load bash profile
 [ -n "$PS1" ] && source ~/.bash_profile
 
+# Set DISPLAY variable to the IP automatically assigned to WSL2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+
+# Automatically start dbus
+sudo /etc/init.d/dbus start &> /dev/null
+
 ################
 #              #
 # ZSH Settings #
@@ -17,7 +23,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="muse"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
