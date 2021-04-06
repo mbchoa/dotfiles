@@ -65,6 +65,9 @@
   export DENO_INSTALL="/home/mbchoa/.deno"
   export PATH="$DENO_INSTALL/bin:$PATH"
 
+#   Set AWS Key Manage Service key alias location
+  export CHAMBER_KMS_KEY_ALIAS=alias/tbt/chamber
+
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
