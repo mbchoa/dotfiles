@@ -27,4 +27,10 @@ packages=(
     typescript
 )
 
+echo "Installing global npm packages"
+for i in "${packages[@]}"; do
+  echo "Installing $i"
+  npm install -g "$i"
+done
+
 npm install -g "${packages[@]}"

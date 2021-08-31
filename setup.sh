@@ -142,7 +142,6 @@ dir=~/dotfiles                        # dotfiles directory
 dir_backup=~/dotfiles_old             # old dotfiles backup directory
 
 # Get current dir (so run this script from anywhere)
-
 export DOTFILES_DIR
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -221,28 +220,6 @@ main() {
   done
 
   unset FILES_TO_SYMLINK
-
-  # Copy binaries
-  ln -fs $HOME/dotfiles/bin $HOME
-
-  declare -a BINARIES=(
-    'batcharge.py'
-    'crlf'
-    'dups'
-    'git-delete-merged-branches'
-    'nyan'
-    'passive'
-    'proofread'
-    'ssh-key'
-    'weasel'
-  )
-
-  for i in ${BINARIES[@]}; do
-    echo "Changing access permissions for binary script :: ${i##*/}"
-    chmod +rwx $HOME/bin/${i##*/}
-  done
-
-  unset BINARIES
 }
 
 install_zsh () {
@@ -278,17 +255,31 @@ install_zsh () {
   fi
 }
 
+install_ohmyzsh () {
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  # Install spaceship theme
+  git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt --depth=1
+
+  # Symlinks spaceship.zsh-theme to my oh-my-zsh custom themes directory
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+  # Install plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+}
+
 # Package managers & packages
 
-# . "$DOTFILES_DIR/install/brew.sh"
-# . "$DOTFILES_DIR/install/npm.sh"
+. "$DOTFILES_DIR/install/brew.sh"
+. "$DOTFILES_DIR/install/npm.sh"
 
-# if [ "$(uname)" == "Darwin" ]; then
-    # . "$DOTFILES_DIR/install/brew-cask.sh"
-# fi
+if [ "$(uname)" == "Darwin" ]; then
+    . "$DOTFILES_DIR/install/brew-cask.sh"
+fi
 
 main
 install_zsh
+install_ohmyzsh
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #

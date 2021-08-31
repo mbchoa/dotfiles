@@ -12,15 +12,10 @@ then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew tap homebrew/versions
-brew tap homebrew/dupes
 brew tap Goles/battery
 
 # Make sure we’re using the latest Homebrew
 brew update
-
-# Upgrade any already-installed formulae
-brew upgrade --all
 
 # Install the Homebrew packages I use on a day-to-day basis.
 #
@@ -73,9 +68,18 @@ apps=(
     ffmpeg --with-libvpx
     wget
     wifi-password
+    openssl
+    readline
+    sqlite3
+    xz
+    zlib
 )
 
-brew install "${apps[@]}"
+echo "Installing Brew apps"
+for i in "${apps[@]}"; do
+  echo "Installing $i"
+  brew install "$i"
+done
 
 # Remove outdated versions from the cellar
 brew cleanup
