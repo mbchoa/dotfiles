@@ -4,7 +4,10 @@
 # Set DISPLAY variable to the IP automatically assigned to WSL2
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
-# Automatically start dbus
+# Automatically start D-Bus. D-Bus is used for internal communication between processes running concurrently
+# on the same machine. This is mainly required for running Cypress in a Windows environment.
+# See blog post for more details on Cypress setup on Windows
+# https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
 sudo /etc/init.d/dbus start &> /dev/null
 
 ################
