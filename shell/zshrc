@@ -8,7 +8,7 @@ export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}
 # on the same machine. This is mainly required for running Cypress in a Windows environment.
 # See blog post for more details on Cypress setup on Windows
 # https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
-sudo /etc/init.d/dbus start &> /dev/null
+/etc/init.d/dbus start &> /dev/null
 
 ################
 #              #
