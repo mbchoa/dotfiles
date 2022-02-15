@@ -19,6 +19,7 @@ export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/s
 
 # Setup Homebrew path
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Setup NVM paths
 export NVM_DIR="$HOME/.nvm"
@@ -28,6 +29,7 @@ export NVM_DIR="$HOME/.nvm"
 # Setup pyenv paths
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Setup Go paths
