@@ -277,9 +277,9 @@ if [ "$(uname)" == "Darwin" ]; then
     . "$DOTFILES_DIR/install/brew-cask.sh"
 fi
 
-main
 install_zsh
 install_ohmyzsh
+main
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
