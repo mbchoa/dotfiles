@@ -1,20 +1,32 @@
-#!/bin/sh
+#!/bin/bash
 
-# This script configures my Node.js development setup. Note that
-# nvm is installed by the Homebrew install script.
+# This script configures my Node.js development setup.
 
 if test ! $(which nvm)
 then
-  echo "Installing a stable version of Node..."
+  echo "Installing nvm..."
 
-  # Install the latest stable version of node
-  nvm install stable
+  # Install nvm
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
-  # Switch to the installed version
-  nvm use node
+  # Setup PATH and load nvm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
-  # Use the stable version of node by default
-  nvm alias default node
+if test ! $(which node)
+then
+  echo "Installing latest stable version of Node..."
+
+    # Install the latest stable version of node
+    nvm install stable
+
+    # Switch to the installed version
+    nvm use node
+
+    # Use the stable version of node by default
+    nvm alias default node
 fi
 
 # Globally install with npm
@@ -22,10 +34,7 @@ fi
 #
 # Some descriptions:
 # diff-so-fancy — sexy git diffs
-packages=(
-    diff-so-fancy
-    typescript
-)
+packages=("diff-so-fancy" "typescript")
 
 echo "Installing global npm packages"
 for i in "${packages[@]}"; do
