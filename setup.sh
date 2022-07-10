@@ -165,7 +165,6 @@ declare -a FILES_TO_SYMLINK=(
   'shell/curlrc'
   'shell/inputrc'
   'shell/shell_aliases'
-  'shell/shell_config'
   'shell/shell_exports'
   'shell/shell_functions'
   'shell/vimrc'
@@ -175,7 +174,7 @@ declare -a FILES_TO_SYMLINK=(
   'git/gitconfig'
   'git/gitignore'
 
-  'editorconfig'
+  '.editorconfig'
 )
 
 FILES_TO_SYMLINK="$FILES_TO_SYMLINK vim bin" # add in vim and the binaries
