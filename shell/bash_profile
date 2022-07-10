@@ -41,6 +41,19 @@ export PATH="$PATH:$GOBIN"
 # Setup rvm path
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Add ~/.local/ to PATH
+export PATH=$HOME/.local/bin:$PATH
+
+# Add poetry to PATH
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Bun Completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# Add Bun to PATH
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
 export EDITOR=/usr/bin/vim
