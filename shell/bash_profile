@@ -77,6 +77,9 @@ export KUBE_EDITOR=vim
 export DENO_INSTALL="/home/mbchoa/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+#   Set kubectl Krew plugin manager path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
