@@ -21,10 +21,8 @@ export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/s
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin":$PATH
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Setup NVM paths
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  --no-use # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Setup fnm paths
+eval "$(fnm env --use-on-cd)"
 
 # Setup pyenv paths
 export PYENV_ROOT="$HOME/.pyenv"
