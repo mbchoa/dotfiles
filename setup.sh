@@ -123,38 +123,6 @@ print_success() {
   printf "\e[0;32m  [✔] $1\e[0m\n"
 }
 
-# Warn user this script will overwrite current dotfiles
-while true; do
-  read -p "Warning: this will overwrite your current dotfiles. Continue? [y/n] " yn
-  case $yn in
-    [Yy]* ) break;;
-    [Nn]* ) exit;;
-    * ) echo "Please answer yes or no.";;
-  esac
-done
-
-# Get the dotfiles directory's absolute path
-SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd -P)"
-DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
-
-
-dir=~/dotfiles                        # dotfiles directory
-dir_backup=~/dotfiles_old             # old dotfiles backup directory
-
-# Get current dir (so run this script from anywhere)
-export DOTFILES_DIR
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# Create dotfiles_old in homedir
-echo -n "Creating $dir_backup for backup of any existing dotfiles in ~..."
-mkdir -p $dir_backup
-echo "done"
-
-# Change to the dotfiles directory
-echo -n "Changing to the $dir directory..."
-cd $dir
-echo "done"
-
 #
 # Actual symlink stuff
 #
@@ -179,15 +147,47 @@ declare -a FILES_TO_SYMLINK=(
 
 FILES_TO_SYMLINK="$FILES_TO_SYMLINK vim bin" # add in vim and the binaries
 
-# Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-
-for i in ${FILES_TO_SYMLINK[@]}; do
-  echo "Moving any existing dotfiles from ~ to $dir_backup"
-  mv ~/.${i##*/} ~/dotfiles_old/
-done
-
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+backup_dotfiles() {
+  # Warn user this script will overwrite current dotfiles
+  while true; do
+    read -p "Warning: this will overwrite your current dotfiles. Continue? [y/n] " yn
+    case $yn in
+      [Yy]* ) break;;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+
+  # Get the dotfiles directory's absolute path
+  SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd -P)"
+  DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
+
+
+  dir=~/dotfiles                        # dotfiles directory
+  dir_backup=~/dotfiles_old             # old dotfiles backup directory
+
+  # Get current dir (so run this script from anywhere)
+  export DOTFILES_DIR
+  DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+  # Create dotfiles_old in homedir
+  echo -n "Creating $dir_backup for backup of any existing dotfiles in ~..."
+  mkdir -p $dir_backup
+  echo "done"
+
+  # Change to the dotfiles directory
+  echo -n "Changing to the $dir directory..."
+  cd $dir
+  echo "done"
+
+  # Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
+  for i in ${FILES_TO_SYMLINK[@]}; do
+    echo "Moving any existing dotfiles from ~ to $dir_backup"
+    mv ~/.${i##*/} ~/dotfiles_old/
+  done
+}
 
 main() {
 
@@ -267,7 +267,7 @@ install_ohmyzsh () {
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 }
 
-# Package managers & packages
+# Install package managers & packages
 
 # . "$DOTFILES_DIR/install/brew.sh"
 # . "$DOTFILES_DIR/install/npm.sh"
@@ -276,6 +276,7 @@ install_ohmyzsh () {
 #     . "$DOTFILES_DIR/install/brew-cask.sh"
 # fi
 
+backup_dotfiles
 install_zsh
 install_ohmyzsh
 main
