@@ -52,6 +52,10 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Add pnpm to PATH
+export PNPM_HOME="/home/mbchoa/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
 export EDITOR=/usr/bin/vim

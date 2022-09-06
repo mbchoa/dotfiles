@@ -269,26 +269,16 @@ install_ohmyzsh () {
 
 # Package managers & packages
 
-. "$DOTFILES_DIR/install/brew.sh"
-. "$DOTFILES_DIR/install/npm.sh"
+# . "$DOTFILES_DIR/install/brew.sh"
+# . "$DOTFILES_DIR/install/npm.sh"
 
-if [ "$(uname)" == "Darwin" ]; then
-    . "$DOTFILES_DIR/install/brew-cask.sh"
-fi
+# if [ "$(uname)" == "Darwin" ]; then
+#     . "$DOTFILES_DIR/install/brew-cask.sh"
+# fi
 
 install_zsh
 install_ohmyzsh
 main
-
-###############################################################################
-# Terminal & iTerm 2                                                          #
-###############################################################################
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Load zsh settings
 source ~/.zshrc
