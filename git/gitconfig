@@ -265,3 +265,5 @@
 [user]
 	name = Michael-Bryant Choa
 	email = mbchoa@gmail.com
+[pull]
+	rebase = true
