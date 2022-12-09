@@ -267,3 +267,5 @@
 	email = mbchoa@gmail.com
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
