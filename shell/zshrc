@@ -2,7 +2,7 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
 # Set DISPLAY variable to the IP automatically assigned to WSL2
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+export DISPLAY=$(ip route list default | awk '{print $3}'):0.0
 
 # Automatically start D-Bus. D-Bus is used for internal communication between processes running concurrently
 # on the same machine. This is mainly required for running Cypress in a Windows environment.
@@ -86,7 +86,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions deno)
+plugins=(git zsh-autosuggestions deno asdf)
 
 source $ZSH/oh-my-zsh.sh
 

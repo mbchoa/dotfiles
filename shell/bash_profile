@@ -83,6 +83,13 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 #   Set kubectl Krew plugin manager path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+#   Adds bash autocompletion
+[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+
+#   Start ssh-agent on new terminal startup
+/usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
+source $HOME/.keychain/$HOST-sh
+
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
