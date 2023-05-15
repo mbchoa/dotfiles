@@ -14,7 +14,10 @@ So, to recap, the install script will:
 ```sh
 $ git clone https://github.com/mbchoa/dotfiles.git ~/dotfiles
 $ cd ~/dotfiles
-$ ./setup.sh
+$ cd install
+$ ./linux.sh
+$ ./brew.sh
+$ ./node.sh
 ```
 
 ## Remotely install using curl

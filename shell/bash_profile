@@ -22,8 +22,8 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin":$PA
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Setup fnm paths
-export PATH=$HOME/.fnm:$PATH
-eval "$(fnm env --use-on-cd)"
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "`fnm env --use-on-cd`"
 
 # Setup pyenv paths
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -55,7 +55,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Add pnpm to PATH
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -87,8 +90,8 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
 #   Start ssh-agent on new terminal startup
-/usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
-source $HOME/.keychain/$HOST-sh
+# /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
+# source $HOME/.keychain/$HOST-sh
 
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER

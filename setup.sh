@@ -224,13 +224,14 @@ main() {
 install_zsh () {
   # Test to see if zshell is installed.  If it is:
   if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
-    # Install Oh My Zsh if it isn't already present
-    if [[ ! -d $dir/oh-my-zsh/ ]]; then
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    fi
     # Set the default shell to zsh if it isn't currently set to zsh
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
       chsh -s $(which zsh)
+    fi
+
+    # Install Oh My Zsh if it isn't already present
+    if [[ ! -d $dir/oh-my-zsh/ ]]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     fi
   else
     # If zsh isn't installed, get the platform of the current machine
@@ -255,7 +256,7 @@ install_zsh () {
 }
 
 install_ohmyzsh () {
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   # Install spaceship theme
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt --depth=1
@@ -264,7 +265,7 @@ install_ohmyzsh () {
   ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
   # Install plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 }
 
 # Install package managers & packages

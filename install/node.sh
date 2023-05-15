@@ -2,44 +2,35 @@
 
 # This script configures my Node.js development setup.
 
-if test ! $(which nvm)
+if test ! $(which fnm)
 then
-  echo "Installing nvm..."
+  echo "Installing fnm..."
 
-  # Install nvm
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-  # Setup PATH and load nvm
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  # Install fnm
+  curl -fsSL https://fnm.vercel.app/install | bash
 fi
 
 if test ! $(which node)
 then
   echo "Installing latest stable version of Node..."
 
-    # Install the latest stable version of node
-    nvm install stable
+    # Install the latest LTS version
+    fnm install --lts
+fi
 
-    # Switch to the installed version
-    nvm use node
+if test ! $(which pnpm)
+then
+  echo "Installing pnpm..."
 
-    # Use the stable version of node by default
-    nvm alias default node
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
 fi
 
 # Globally install with npm
 # To list globally installed npm packages and version: npm list -g --depth=0
-#
-# Some descriptions:
-# diff-so-fancy — sexy git diffs
 packages=("diff-so-fancy" "typescript")
 
 echo "Installing global npm packages"
 for i in "${packages[@]}"; do
   echo "Installing $i"
-  npm install -g "$i"
+  pnpm install -g "$i"
 done
-
-npm install -g "${packages[@]}"
