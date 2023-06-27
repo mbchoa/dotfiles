@@ -2,7 +2,10 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
 # Set DISPLAY variable to the IP automatically assigned to WSL2
-export DISPLAY=$(ip route list default | awk '{print $3}'):0.0
+if uname -r | grep -q "Microsoft"
+then
+  export DISPLAY=$(ip route list default | awk '{print $3}'):0.0
+fi
 
 # Automatically start D-Bus. D-Bus is used for internal communication between processes running concurrently
 # on the same machine. This is mainly required for running Cypress in a Windows environment.
