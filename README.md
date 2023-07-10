@@ -60,7 +60,7 @@ as the `git` user credentials, e.g.:
 
 I actively watch the following repositories and add the best changes to this repository:
 
-- [GitHub ❤ ~/](http://dotfiles.github.io/)
+- [GitHub ❤ ~/](https://dotfiles.github.io/)
 - [Nick's dotfiles](https://github.com/nicksp/dotfiles)
 - [Oscar's dotfiles](https://github.com/ooHmartY/dotfiles)
 - [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles)
