@@ -111,6 +111,11 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 #   Adds bash autocompletion
 [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
+#   Adds terraform autocompletion
+complete -C /opt/homebrew/bin/terraform terraform
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
 #   Start ssh-agent on new terminal startup
 # /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
 # source $HOME/.keychain/$HOST-sh

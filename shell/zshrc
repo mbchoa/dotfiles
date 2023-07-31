@@ -2,8 +2,7 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
 # Set DISPLAY variable to the IP automatically assigned to WSL2
-if uname -r | grep -q "Microsoft"
-then
+if uname -r | grep -q "Microsoft"; then
   export DISPLAY=$(ip route list default | awk '{print $3}'):0.0
 fi
 
@@ -11,7 +10,7 @@ fi
 # on the same machine. This is mainly required for running Cypress in a Windows environment.
 # See blog post for more details on Cypress setup on Windows
 # https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
-/etc/init.d/dbus start &> /dev/null
+/etc/init.d/dbus start &>/dev/null
 
 ################
 #              #
