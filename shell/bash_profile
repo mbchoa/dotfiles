@@ -23,7 +23,7 @@ export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/s
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Run following on MacOS
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Setup fnm paths
 export PATH="$HOME/.local/share/fnm:$PATH"
@@ -59,13 +59,11 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Add pnpm to PATH
-# pnpm
-export PNPM_HOME="/Users/mbchoa/Library/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
 # Android Studio
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -112,9 +110,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
 #   Adds terraform autocompletion
-complete -C /opt/homebrew/bin/terraform terraform
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+# complete -C /opt/homebrew/bin/terraform terraform
+# autoload -U +X bashcompinit && bashcompinit
+# complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 #   Start ssh-agent on new terminal startup
 # /usr/bin/keychain --nogui --quiet $HOME/.ssh/id_ed25519
