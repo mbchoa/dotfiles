@@ -18,12 +18,13 @@ export PATH="$PATH:/usr/local/bin/"
 export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
 # Setup Homebrew path
-# Run following in Linux environment
-# export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin":$PATH
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# Run following on MacOS
-# eval "$(/opt/homebrew/bin/brew shellenv)"
+unamestr=$(uname)
+if [[ "$unamestr" == 'Linux' ]]; then
+  export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin":$PATH
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Setup fnm paths
 export PATH="$HOME/.local/share/fnm:$PATH"
