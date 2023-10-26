@@ -42,7 +42,7 @@ if ! xcode-select --print-path &>/dev/null; then
 fi
 
 ###############################################################################
-# Symlinks to link dotfiles into ~/                                           #
+# Symlinks to dotfiles into ~/                                           #
 ###############################################################################
 
 ./setup.sh
