@@ -7,15 +7,14 @@
 
 # This is safe to run multiple times and will prompt you about anything unclear
 
-
 #
 # Utils
 #
 
 answer_is_yes() {
-  [[ "$REPLY" =~ ^[Yy]$ ]] \
-    && return 0 \
-    || return 1
+  [[ "$REPLY" =~ ^[Yy]$ ]] &&
+    return 0 ||
+    return 1
 }
 
 ask() {
@@ -40,18 +39,18 @@ ask_for_sudo() {
     sudo -n true
     sleep 60
     kill -0 "$$" || exit
-  done &> /dev/null &
+  done &>/dev/null &
 
 }
 
 cmd_exists() {
-  [ -x "$(command -v "$1")" ] \
-    && printf 0 \
-    || printf 1
+  [ -x "$(command -v "$1")" ] &&
+    printf 0 ||
+    printf 1
 }
 
 execute() {
-  $1 &> /dev/null
+  $1 &>/dev/null
   print_result $? "${2:-$1}"
 }
 
@@ -75,9 +74,12 @@ get_os() {
 }
 
 is_git_repository() {
-  [ "$(git rev-parse &>/dev/null; printf $?)" -eq 0 ] \
-    && return 0 \
-    || return 1
+  [ "$(
+    git rev-parse &>/dev/null
+    printf $?
+  )" -eq 0 ] &&
+    return 0 ||
+    return 1
 }
 
 mkd() {
@@ -110,12 +112,12 @@ print_question() {
 }
 
 print_result() {
-  [ $1 -eq 0 ] \
-    && print_success "$2" \
-    || print_error "$2"
+  [ $1 -eq 0 ] &&
+    print_success "$2" ||
+    print_error "$2"
 
-  [ "$3" == "true" ] && [ $1 -ne 0 ] \
-    && exit
+  [ "$3" == "true" ] && [ $1 -ne 0 ] &&
+    exit
 }
 
 print_success() {
@@ -154,23 +156,25 @@ backup_dotfiles() {
   while true; do
     read -p "Warning: this will overwrite your current dotfiles. Continue? [y/n] " yn
     case $yn in
-      [Yy]* ) break;;
-      [Nn]* ) exit;;
-      * ) echo "Please answer yes or no.";;
+    [Yy]*) break ;;
+    [Nn]*) exit ;;
+    *) echo "Please answer yes or no." ;;
     esac
   done
 
   # Get the dotfiles directory's absolute path
-  SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd -P)"
+  SCRIPT_DIR="$(
+    cd "$(dirname "$0")"
+    pwd -P
+  )"
   DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
 
-
-  dir=~/dotfiles                        # dotfiles directory
-  dir_backup=~/dotfiles_old             # old dotfiles backup directory
+  dir=~/dotfiles            # dotfiles directory
+  dir_backup=~/dotfiles_old # old dotfiles backup directory
 
   # Get current dir (so run this script from anywhere)
   export DOTFILES_DIR
-  DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
   # Create dotfiles_old in homedir
   echo -n "Creating $dir_backup for backup of any existing dotfiles in ~..."
@@ -221,7 +225,7 @@ main() {
   unset FILES_TO_SYMLINK
 }
 
-install_zsh () {
+install_zsh() {
   # Test to see if zshell is installed.  If it is:
   if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
     # Set the default shell to zsh if it isn't currently set to zsh
@@ -235,7 +239,7 @@ install_zsh () {
     fi
   else
     # If zsh isn't installed, get the platform of the current machine
-    platform=$(uname);
+    platform=$(uname)
     # If the platform is Linux, try an apt-get to install zsh and then recurse
     if [[ $platform == 'Linux' ]]; then
       if [[ -f /etc/redhat-release ]]; then
@@ -255,32 +259,22 @@ install_zsh () {
   fi
 }
 
-install_ohmyzsh () {
+install_ohmyzsh() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  # Install spaceship theme
-  git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt --depth=1
-
-  # Symlinks spaceship.zsh-theme to my oh-my-zsh custom themes directory
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-
-  # Install plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+  source ~/.zshrc
 }
 
-# Install package managers & packages
+install_ohmyzsh_plugins() {
+  # Install plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt --depth=1
 
-# . "$DOTFILES_DIR/install/brew.sh"
-# . "$DOTFILES_DIR/install/npm.sh"
-
-# if [ "$(uname)" == "Darwin" ]; then
-#     . "$DOTFILES_DIR/install/brew-cask.sh"
-# fi
+  # Symlinks spaceship.zsh-theme to my oh-my-zsh custom themes directory
+  ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme $ZSH_CUSTOM/themes/spaceship.zsh-theme
+}
 
 backup_dotfiles
 install_zsh
 install_ohmyzsh
+install_ohmyzsh_plugins
 main
-
-# Load zsh settings
-source ~/.zshrc

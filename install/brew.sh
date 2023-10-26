@@ -19,7 +19,6 @@ brew tap hashicorp/tap
 
 # Install the Homebrew packages I use on a day-to-day basis.
 apps=(
-  pyenv,
   hashicorp/tap/terraform
 )
 
