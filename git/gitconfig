@@ -41,6 +41,7 @@
        
         # Rebase
         ros = rebase origin/staging
+        rht = rebase -i HEAD~2
 
         # Pull
         up = pull
@@ -63,6 +64,7 @@
         # Status/Logging
         s = status
         ss = status -sb
+        sw = switch -
         hist = log --graph --pretty=custom           # Show custom graph
         l = log --pretty=custom                      # Show custom log
         ll = log --stat --abbrev-commit
