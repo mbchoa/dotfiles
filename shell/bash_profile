@@ -60,7 +60,7 @@ case ":$PATH:" in
 esac
 
 # Add rtx to PATH
-eval "$(/home/mbchoa/.local/share/rtx/bin/rtx activate zsh)"
+eval "$($HOME/.local/bin/rtx activate zsh)"
 
 # Android Studio
 export ANDROID_HOME=$HOME/Library/Android/sdk

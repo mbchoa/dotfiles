@@ -117,6 +117,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# bun completions
-[ -s "/home/mbchoa/.bun/_bun" ] && source "/home/mbchoa/.bun/_bun"
