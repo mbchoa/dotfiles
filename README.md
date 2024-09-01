@@ -17,6 +17,7 @@ $ cd ~/dotfiles
 $ cd install
 $ ./linux.sh
 $ ./brew.sh
+$ ./mise.sh
 $ ./node.sh
 ```
 

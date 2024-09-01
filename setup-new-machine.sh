@@ -42,10 +42,17 @@ if ! xcode-select --print-path &>/dev/null; then
 fi
 
 ###############################################################################
-# Symlinks to dotfiles into ~/                                           #
+# Symlinks to dotfiles into ~/                                                #
 ###############################################################################
 
 ./setup.sh
+
+###############################################################################
+# Setup spaceship theme                                                       #
+###############################################################################
+
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 ###############################################################################
 # Install Linux libraries                                                     #
@@ -60,10 +67,10 @@ $HOME/dotfiles/install/linux.sh
 $HOME/dotfiles/install/brew.sh
 
 ###############################################################################
-# Install rtx                                                                 #
+# Install mise                                                                 #
 ###############################################################################
 
-$HOME/dotfiles/install/rtx.sh
+$HOME/dotfiles/install/mise.sh
 
 ###############################################################################
 # Install Node                                                                #

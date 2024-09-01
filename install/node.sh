@@ -9,8 +9,8 @@
 #   curl -fsSL https://fnm.vercel.app/install | bash
 # fi
 
-if test ! $(which rtx); then
-  echo "rtx is required to install Node. Please run the rtx.sh script first."
+if test ! $(which mise); then
+  echo "mise is required to install Node. Please run the mise.sh script first."
   exit 1
 fi
 
@@ -19,7 +19,7 @@ if test ! $(which node); then
   echo "Installing latest stable version of Node..."
 
   # Install the latest version
-  rtx use --global node@latest
+  mise use --global node@latest
 fi
 
 # Install pnpm
