@@ -2,7 +2,7 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
 # Set DISPLAY variable to the IP automatically assigned to WSL2
-if uname -r | grep -q "Microsoft"; then
+if uname -r | grep -i "microsoft" > /dev/null; then
   export DISPLAY=$(ip route list default | awk '{print $3}'):0.0
 fi
 
