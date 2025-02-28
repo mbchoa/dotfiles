@@ -59,7 +59,7 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Add rtx to PATH
+# Add mise to PATH
 eval "$($HOME/.local/bin/mise activate zsh)"
 
 # Android Studio

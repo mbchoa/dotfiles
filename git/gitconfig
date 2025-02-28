@@ -161,6 +161,11 @@
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
+[column]
+        ui = auto
+
 # So much color
 [color]
         ui = always
@@ -187,9 +192,27 @@
         changed = yellow reverse
         untracked = red reverse
 
-# Git mergetool
+[commit]
+        verbose = true
+
+[rerere]
+        enabled = true
+        autoupdate = true
+
+[rebase]
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
+
+[branch]
+        sort = -committerdate
+
+[tag]
+        sort = version:refname
+
 [merge]
         tool = opendiff
+        conflictstyle = zdiff3
 
 [core]
         editor = nano
@@ -199,11 +222,19 @@
         autocrlf = input
         mergeoptions = --no-edit
         ignorecase = false
+        fsmonitor = true
+        untrackedCache = true
 
 [pager]
         # Insanely beautiful diffs ==> npm install -g diff-so-fancy
         diff = diff-so-fancy | less --tabs=4 -RFX
         show = diff-so-fancy | less --tabs=4 -RFX
+
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
 
 [diff "bin"]
         # Use `hexdump` to diff binary files
@@ -218,8 +249,7 @@
         #                     └─ hash (abbreviated)
 
 [help]
-        # Correct typos
-        autocorrect = 1
+        autocorrect = prompt
 
 # Any GitHub repo with my username should be checked out r/w by default
 # http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
@@ -250,8 +280,9 @@
 [push]
         # Make `git push` automatically push relevant
         # annotated tags when pushing branches out
+        default = simple
+        autoSetupRemote = true
         followTags = true
-        default = current
 
 # Use separate file for username / github token / etc
 [include]
@@ -264,10 +295,15 @@
 
 [fetch]
         prune = true
+        pruneTags = true
+        all = true
+
 [user]
 	name = Michael-Bryant Choa
 	email = mbchoa@gmail.com
+
 [pull]
 	rebase = true
+
 [init]
 	defaultBranch = main
